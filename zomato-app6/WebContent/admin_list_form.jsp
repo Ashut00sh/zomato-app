@@ -11,7 +11,7 @@
 </head>
 <body>
 	<table align="center">
-	<tr><td><font color="green"><h1>Admin Menu List</h1></font></td></tr>
+	<tr><td><font color="green"><h1>Admin Menu List HotelOne</h1></font></td></tr>
 	<%
 	List<Admin> elist = (List<Admin>)request.getAttribute("alist");
 	for(Admin el:elist){

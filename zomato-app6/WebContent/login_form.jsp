@@ -36,7 +36,7 @@
 			<td><input type="submit" value="Login"></td>
 		</tr>
 		<tr>
-			<td><a href="index.jsp">Forget PassWord</a></td>
+			<td><a href="forgot_password.html">Forget PassWord</a></td>
 		</tr>
 		<form>
   

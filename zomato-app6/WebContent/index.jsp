@@ -20,7 +20,13 @@
 		</tr>
 		<tr>
 		     
-			<td><a href="zlogin_form.htm"><h2>Sign In</h2></a></td>
+			<td><a href="zlogin_form.htm"><h2>Sign In User</h2></a></td>
+			
+		</tr>
+		<tr>
+		     
+			<td><a href="zadmin_form.htm"><h2>Sign In Admin</h2></a></td>
+			
 		</tr>
 		</table>
 </body>

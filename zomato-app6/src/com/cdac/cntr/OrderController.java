@@ -11,28 +11,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cdac.dto.Admin;
 import com.cdac.dto.Order;
 import com.cdac.dto.User;
+import com.cdac.serv.AdminService;
 import com.cdac.serv.OrderService;
 
 @Controller
 public class OrderController {
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private AdminService adminService;
 	@RequestMapping(value = "order_form.htm",method = RequestMethod.GET)
-	public String Orderadd(ModelMap map) {
-		map.put("order", new Order());
-		return "add_order";
+	public String Orderadd(ModelMap map,Admin admin) {
+		int userId =5;
+		System.out.println("inside orderadd");
+		List li= adminService.selectAll(userId);
+		System.out.println("get admin list");
+		map.put("order", li);
+		
+		return "add_order_list";
 	}
 	
-	@RequestMapping(value = "order_list.htm",method = RequestMethod.POST)
+	@RequestMapping(value = "order_list.htm",method = RequestMethod.GET)
 	public String addOrderlist(Order order,ModelMap map,HttpSession session) {
 		//System.out.println(order.getMenuName());
 		int userId =((User) session.getAttribute("userkey")).getUserId();
 		order.setUserId(userId);
 		orderService.addOrder(order);
 		
-		return "home";
+		return "add_order_list";
 	}
 	
 	@RequestMapping(value = "menu_list.htm",method = RequestMethod.GET)
