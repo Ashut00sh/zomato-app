@@ -18,6 +18,7 @@ import com.cdac.dto.User;
 import com.cdac.serv.UserService;
 
 import com.cdac.valid.UserValidator;
+import com.cdac.valid.register_validator;
 
 @Controller
 public class UserController {
@@ -26,17 +27,21 @@ public class UserController {
 	@Autowired
 	private UserValidator userValidator;
 	@Autowired
+	private register_validator regvalidate;
+	@Autowired
 	private MailSender mailSender;
 
 	@RequestMapping(value="regi_form.htm",method = RequestMethod.GET)
 	public  String regform(ModelMap map) {
+		System.out.println("inside sign up cntr");
 		map.put("user",new User());
+		System.out.println("after ");
 		return "reg_form";
 	}
 	
 	@RequestMapping(value="reg.htm",method = RequestMethod.POST)
 	public String register(User user,BindingResult result,ModelMap map) {
-			userValidator.validate(user, result);
+			regvalidate.validate(user, result);
 			if(result.hasErrors()) {
 				return"reg_form";
 			}else {
@@ -80,6 +85,7 @@ public class UserController {
 	@RequestMapping(value = "user_logout.htm",method = RequestMethod.GET)
 	public String userlogout(ModelMap map,HttpSession session) {
 		System.out.println("inside admin logout htm");
+		session.removeAttribute("user");
 		session.invalidate();
 		//request.getsession(false);
 		
@@ -125,6 +131,7 @@ public class UserController {
 	@RequestMapping(value = "admin_logout.htm",method = RequestMethod.GET)
 	public String adminlogout(ModelMap map,HttpSession session) {
 		System.out.println("inside admin logout htm");
+		session.removeAttribute("user");
 		session.invalidate();
 		//request.getsession(false);
 		

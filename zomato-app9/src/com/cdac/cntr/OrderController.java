@@ -35,11 +35,13 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "order_lis.htm",method = RequestMethod.GET)
-	public String addOrderlist1(Order order,ModelMap map,HttpSession session) {
+	public String addOrderlist1(@RequestParam int dishId,Order order,ModelMap map,HttpSession session) {
 		//System.out.println(order.getMenuName());
 		int userId =((User) session.getAttribute("userkey")).getUserId();
 		System.out.println(userId+" "+"inside order list htm");
 		order.setUserId(userId);
+		Admin admin= adminService.findMenu(dishId);
+		map.put("order",admin);
 		orderService.addOrder(order);
 		System.out.println("after addorder");
 		return "add_order_list";

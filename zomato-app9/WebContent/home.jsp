@@ -1,5 +1,17 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.cdac.cntr.UserController" %>
+    <%@ include file="cache_control.jsp" %>
+    <jsp:useBean id="user" class="com.cdac.dto.User" scope="session"></jsp:useBean>>
+    <%
+    if(user != null && user.getUserId()>0){
+    	
+    
+    }else{
+	
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
